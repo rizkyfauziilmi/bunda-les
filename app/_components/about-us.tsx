@@ -58,10 +58,10 @@ export const AboutUs = () => {
           Tentang Kami
         </h2>
         <blockquote className="text-center md:pl-6 italic md:text-lg text-sm">
-          "Menjadi bimbingan belajar terdepan yang tidak hanya fokus pada
+          &quot;Menjadi bimbingan belajar terdepan yang tidak hanya fokus pada
           prestasi akademis, tetapi juga pada pembentukan karakter dan akhlak
           mulia, membantu siswa melangkah kecil menuju masa depan besar yang
-          gemilang."
+          gemilang.&quot;
         </blockquote>
       </div>
       <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">

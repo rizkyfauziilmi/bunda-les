@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import {
   BookText,
   Star,
-  Image,
+  Images,
   Speech,
   ShieldQuestion,
   MessageCircleQuestion,
@@ -40,7 +40,7 @@ const components: {
   },
   {
     title: "Galeri",
-    icon: <Image className="w-4 h-4 mr-2" />,
+    icon: <Images className="w-4 h-4 mr-2" />,
     elementId: "gallery",
   },
   {

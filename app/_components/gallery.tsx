@@ -18,7 +18,6 @@ import {
   sd6,
   sd7,
   sd8,
-  sd9,
 } from "@/public/images/sd/sdIndex";
 import {
   smp1,
@@ -68,7 +67,7 @@ enum GalleryType {
 const imagesData: { endpoint: GalleryType; images: StaticImageData[] }[] = [
   {
     endpoint: GalleryType.SD,
-    images: [sd1, sd2, sd3, sd4, sd5, sd6, sd7, sd8, sd9],
+    images: [sd1, sd2, sd3, sd4, sd5, sd6, sd7, sd8],
   },
   {
     endpoint: GalleryType.SMP,
@@ -76,7 +75,27 @@ const imagesData: { endpoint: GalleryType; images: StaticImageData[] }[] = [
   },
   {
     endpoint: GalleryType.SMA,
-    images: [sma1, sma2, sma3, sma4, sma5, sma6, sma7, sma8, sma9, sma10, sma11, sma12, sma13, sma14, sma15, sma16, sma17, sma18, sma19],
+    images: [
+      sma1,
+      sma2,
+      sma3,
+      sma4,
+      sma5,
+      sma6,
+      sma7,
+      sma8,
+      sma9,
+      sma10,
+      sma11,
+      sma12,
+      sma13,
+      sma14,
+      sma15,
+      sma16,
+      sma17,
+      sma18,
+      sma19,
+    ],
   },
   {
     endpoint: GalleryType.Other,

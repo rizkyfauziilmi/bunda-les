@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import Favicon from "@/public/favicon.ico";
 
-const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-montserrat",
+});
 
 export const metadata: Metadata = {
   title: "Bunda Les",
@@ -19,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id">
-      <body className={inter.className}>
+    <html lang="id" suppressHydrationWarning>
+      <body className={montserrat.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

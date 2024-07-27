@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Pagination,
@@ -53,7 +53,6 @@ import {
   sma19,
 } from "@/public/images/sma/smaIndex";
 import { cn } from "@/lib/utils";
-import { useMediaQuery } from "usehooks-ts";
 import { motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
 
@@ -104,12 +103,12 @@ const imagesData: { endpoint: GalleryType; images: StaticImageData[] }[] = [
 ];
 
 export const Gallery = () => {
+  const ref = useRef<HTMLDivElement>(null);
   const [currentGalleryState, setCurrentGalleryState] = useState<GalleryType>(
     GalleryType.SD
   );
   const [currentPage, setCurrentPage] = useState(1);
-  const isMobile = useMediaQuery("(max-width: 640px)");
-  const pageSize = isMobile ? 4 : 8; // Number of images per page
+  const pageSize = 8; // Number of images per page
 
   const totalImages =
     imagesData.find((data) => data.endpoint === currentGalleryState)?.images
@@ -118,6 +117,16 @@ export const Gallery = () => {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+
+    ref.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  const handleGalleryChange = (gallery: GalleryType) => {
+    setCurrentGalleryState(gallery);
+    setCurrentPage(1);
   };
 
   const startIndex = (currentPage - 1) * pageSize;
@@ -127,6 +136,7 @@ export const Gallery = () => {
     <div
       className="min-h-screen text-center flex flex-col justify-start py-12 md:px-16"
       id="gallery"
+      ref={ref}
     >
       <div>
         <h2 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
@@ -139,7 +149,7 @@ export const Gallery = () => {
       <div className="md:space-x-8 md:mt-8 mt-4">
         <Button
           variant={currentGalleryState === GalleryType.SD ? "default" : "ghost"}
-          onClick={() => setCurrentGalleryState(GalleryType.SD)}
+          onClick={() => handleGalleryChange(GalleryType.SD)}
         >
           SD
         </Button>
@@ -147,7 +157,7 @@ export const Gallery = () => {
           variant={
             currentGalleryState === GalleryType.SMP ? "default" : "ghost"
           }
-          onClick={() => setCurrentGalleryState(GalleryType.SMP)}
+          onClick={() => handleGalleryChange(GalleryType.SMP)}
         >
           SMP
         </Button>
@@ -155,7 +165,7 @@ export const Gallery = () => {
           variant={
             currentGalleryState === GalleryType.SMA ? "default" : "ghost"
           }
-          onClick={() => setCurrentGalleryState(GalleryType.SMA)}
+          onClick={() => handleGalleryChange(GalleryType.SMA)}
         >
           SMA
         </Button>
@@ -163,7 +173,7 @@ export const Gallery = () => {
           variant={
             currentGalleryState === GalleryType.Other ? "default" : "ghost"
           }
-          onClick={() => setCurrentGalleryState(GalleryType.Other)}
+          onClick={() => handleGalleryChange(GalleryType.Other)}
         >
           Lainnya
         </Button>
@@ -207,6 +217,11 @@ export const Gallery = () => {
               <PaginationItem key={index}>
                 <PaginationLink
                   isActive={currentPage === index + 1}
+                  className={cn(
+                    currentPage === index + 1
+                      ? "cursor-not-allowed text-muted-foreground"
+                      : "cursor-pointer"
+                  )}
                   onClick={() => handlePageChange(index + 1)}
                 >
                   {index + 1}

@@ -12,6 +12,7 @@ import {
   UserRoundPen,
 } from "lucide-react";
 import Link from "next/link";
+import { ModeToggle } from "@/components/mode-toggle";
 
 interface SidebarContentProps {
   closeSidebar: () => void;
@@ -23,42 +24,42 @@ const components: {
   elementId?: string;
   href?: string;
 }[] = [
-  {
-    title: "Tentang Kami",
-    icon: <ShieldQuestion className="w-4 h-4 mr-2" />,
-    elementId: "about-us",
-  },
-  {
-    title: "Program dan Layanan",
-    icon: <BookText className="w-4 h-4 mr-2" />,
-    elementId: "programs",
-  },
-  {
-    title: "Testimoni dan Review",
-    icon: <Star className="w-4 h-4 mr-2" />,
-    elementId: "testimonials",
-  },
-  {
-    title: "Galeri",
-    icon: <Images className="w-4 h-4 mr-2" />,
-    elementId: "gallery",
-  },
-  {
-    title: "Pengajar",
-    icon: <Speech className="w-4 h-4 mr-2" />,
-    elementId: "teacher",
-  },
-  {
-    title: "FAQ",
-    icon: <MessageCircleQuestion className="w-4 h-4 mr-2" />,
-    elementId: "faq",
-  },
-  {
-    title: "Daftar Sekarang",
-    icon: <UserRoundPen className="w-4 h-4 mr-2" />,
-    href: "/registration",
-  },
-];
+    {
+      title: "Tentang Kami",
+      icon: <ShieldQuestion className="w-4 h-4 mr-2" />,
+      elementId: "about-us",
+    },
+    {
+      title: "Program dan Layanan",
+      icon: <BookText className="w-4 h-4 mr-2" />,
+      elementId: "programs",
+    },
+    {
+      title: "Testimoni dan Review",
+      icon: <Star className="w-4 h-4 mr-2" />,
+      elementId: "testimonials",
+    },
+    {
+      title: "Galeri",
+      icon: <Images className="w-4 h-4 mr-2" />,
+      elementId: "gallery",
+    },
+    {
+      title: "Pengajar",
+      icon: <Speech className="w-4 h-4 mr-2" />,
+      elementId: "teacher",
+    },
+    {
+      title: "FAQ",
+      icon: <MessageCircleQuestion className="w-4 h-4 mr-2" />,
+      elementId: "faq",
+    },
+    {
+      title: "Daftar Sekarang",
+      icon: <UserRoundPen className="w-4 h-4 mr-2" />,
+      href: "/registration",
+    },
+  ];
 
 export const SidebarContent = ({ closeSidebar }: SidebarContentProps) => {
   return (
@@ -100,6 +101,7 @@ export const SidebarContent = ({ closeSidebar }: SidebarContentProps) => {
           );
         }
       })}
+      <ModeToggle isText />
     </div>
   );
 };

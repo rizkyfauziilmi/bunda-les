@@ -26,19 +26,28 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import { ClipboardPen, LoaderCircle } from "lucide-react";
-import { useTransition } from "react";
+import { useEffect, useTransition } from "react";
 import { submitRegistration } from "@/actions/registration";
 
 export const RegistrationForm = () => {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof RegistrationSchema>>({
+    defaultValues: {
+      parentUsername: "",
+      childUsername: "",
+      schoolName: "",
+      registrationType: "",
+      phoneNumber: "",
+      additionalInfo: "",
+    },
     resolver: zodResolver(RegistrationSchema),
   });
 
   function onSubmit(values: z.infer<typeof RegistrationSchema>) {
     const phoneData = getPhoneData(values.phoneNumber);
 
+    // Check if phone number is valid
     if (!phoneData.isValid) {
       form.setError("phoneNumber", {
         type: "manual",
@@ -67,7 +76,9 @@ export const RegistrationForm = () => {
           toast("Terjadi kesalahan", {
             icon: "❌",
           });
-        });
+        }).finally(() => {
+          form.reset();
+        })
     });
   }
 
